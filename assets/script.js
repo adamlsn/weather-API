@@ -8,8 +8,17 @@ $(".searchBtn").on("click", function getWeather () {
         const iconurl = "https://openweathermap.org/img/w/" + condition + ".png";
         const humidity = data.main.humidity;
         const speed = data.wind.speed;
-        const temp = data.main.temp;
-        const uvIndex = 99;
+        const temp = Math.round((data.main.temp - 273.15)*(9/5)+32);
+
+        const lat = data.coord.lat;
+        const lon = data.coord.lon;
+        const uvQuery=`https://api.openweathermap.org/data/2.5/uvi?appid=475f5f6bb734d8c713688458591cd41b&lat=${lat}&lon=${lon}`
+
+        $.getJSON(uvQuery, callUV);
+        function callUV(data){
+            const uvIndex = data.value;
+            $("#uv").text(`UV Index: ${uvIndex}`);
+        }
 
         $("#date").text(moment().format(`on MMMM Do, YYYY:`));
         $("#city").text(`The weather in ${city}`);   
@@ -17,7 +26,6 @@ $(".searchBtn").on("click", function getWeather () {
         $("#humid").text(`Humidity: ${humidity}%`);
         $("#speed").text(`Wind Speed: ${speed}mph`);
         $("#temp").text("Temperature: " + temp + "\xB0 F");
-        $("#uv").text(`UV Index: ${uvIndex}`);
     }
 });
 
