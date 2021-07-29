@@ -18,6 +18,11 @@ $(".searchBtn").on("click", function getWeather () {
         function callUV(data){
             const uvIndex = data.value;
             $("#uv").text(`UV Index: ${uvIndex}`);
+
+            if(uvIndex >= 0 && uvIndex <=2) $(".uv").css({"background-color":"green", "color":"white"});
+            else if(uvIndex > 2 && uvIndex <= 5) $(".uv").css({"background-color":"yellow", "color":"white"})
+            else if (uvIndex > 5 && uvIndex <= 7) $(".uv").css({"background-color":"orange", "color":"white"})
+            else if (uvIndex > 7) $(".uv").css({"background-color":"red", "color":"white"})
         }
 
         $("#date").text(moment().format(`on MMMM Do, YYYY:`));
@@ -29,8 +34,8 @@ $(".searchBtn").on("click", function getWeather () {
     }
 });
 
-$(".searchBtn").on("click", function forecast() {
-    const cityName = $("#cityInput").val();
-    const query = "api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=475f5f6bb734d8c713688458591cd41b";
+// $(".searchBtn").on("click", function forecast() {
+//     const cityName = $("#cityInput").val();
+//     const query = "api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=475f5f6bb734d8c713688458591cd41b";
 
-});
+// });
