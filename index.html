@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+    <link rel="./assets/style.css" />
+</head>
+<body>
+    <header>
+        <h1>Weather Dashboard</h1>
+    </header>
+
+    <div class="container">
+        <div class="city-search">Search For A City: 
+            <input type="text" id="cityInput" class="cityInput" style="text-transform: uppercase" />
+            <button class="searchBtn" type="submit"><span class="oi oi-magnifying-glass"></span></button>
+
+        </div>
+        <div class="city-history">
+
+        </div>
+
+        <div class="weather">
+            <h2 id="city"><img src="" id="icon"></h2>
+            <h3 id="date"></h3>
+
+            <ul class="list-items">
+                <li id="temp"></li>
+                <li id="humid"></li>
+                <li id="speed"></li>
+                <li id="uv"></li>
+            </ul>
+        </div>
+    </div>  
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/script.js"></script>
+</body>
+</html>
