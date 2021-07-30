@@ -43,12 +43,36 @@ $(".searchBtn").on("click", function getWeather () {
                 if(data.ok) {
                     data.json().then(function(data) {
                         const day1 = data.list[0];
+                        const day2 = data.list[7];
+                        const day3 = data.list[15];
+                        const day4 = data.list[23];
+                        const day5 = data.list[31];
 
-                        $("#day1").text(moment(day1.dt_txt).format('MM.DD.YY'));
+                        $("#day1").text(moment(day1.dt_txt).format('MM-DD-YY'));
                         $("#icon1").attr("src", "https://openweathermap.org/img/w/" + day1.weather[0].icon + ".png");
                         $(".temp1").text("Temp: " + Math.round(((day1.main.temp_max-273.15)*(9/5)+32)) + "\xB0 F");
                         $(".humid1").text(`Humidity: ${day1.main.humidity}%`);
-                    });
+
+                        $("#day2").text(moment(day2.dt_txt).format('MM-DD-YY'));
+                        $("#icon2").attr("src", "https://openweathermap.org/img/w/" + day2.weather[0].icon + ".png");
+                        $(".temp2").text("Temp: " + Math.round(((day2.main.temp_max-273.15)*(9/5)+32)) + "\xB0 F");
+                        $(".humid2").text(`Humidity: ${day2.main.humidity}%`);
+
+                        $("#day3").text(moment(day3.dt_txt).format('MM-DD-YY'));
+                        $("#icon3").attr("src", "https://openweathermap.org/img/w/" + day3.weather[0].icon + ".png");
+                        $(".temp3").text("Temp: " + Math.round(((day3.main.temp_max-273.15)*(9/5)+32)) + "\xB0 F");
+                        $(".humid3").text(`Humidity: ${day3.main.humidity}%`);
+
+                        $("#day4").text(moment(day4.dt_txt).format('MM-DD-YY'));
+                        $("#icon4").attr("src", "https://openweathermap.org/img/w/" + day4.weather[0].icon + ".png");
+                        $(".temp4").text("Temp: " + Math.round(((day4.main.temp_max-273.15)*(9/5)+32)) + "\xB0 F");
+                        $(".humid4").text(`Humidity: ${day4.main.humidity}%`);
+
+                        $("#day5").text(moment(day5.dt_txt).format('MM-DD-YY'));
+                        $("#icon5").attr("src", "https://openweathermap.org/img/w/" + day5.weather[0].icon + ".png");
+                        $(".temp5").text("Temp: " + Math.round(((day5.main.temp_max-273.15)*(9/5)+32)) + "\xB0 F");
+                        $(".humid5").text(`Humidity: ${day5.main.humidity}%`);
+                        });
                 }
             });
         };
