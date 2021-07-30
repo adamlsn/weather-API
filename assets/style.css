@@ -60,7 +60,7 @@ header {
     justify-self: left;
 }
 
-.weather ul{
+ul{
     list-style: none;
     display: inline-block;
 }

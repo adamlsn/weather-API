@@ -1,6 +1,8 @@
 $(".searchBtn").on("click", function getWeather () {
     const cityName = $("#cityInput").val().toUpperCase();
     const  query= "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=475f5f6bb734d8c713688458591cd41b";
+
+
     $.getJSON(query, weatherCallback);
     function weatherCallback(data) {
         const city = data.name;
@@ -31,6 +33,10 @@ $(".searchBtn").on("click", function getWeather () {
         $("#humid").text(`Humidity: ${humidity}%`);
         $("#speed").text(`Wind Speed: ${speed}mph`);
         $("#temp").text("Temperature: " + temp + "\xB0 F");
+
+        let currentWeather = JSON.parse(localStorage.getItem("currentWeather")) || {};
+        currentWeather = [city, condition, humidity, speed, temp]
+        localStorage.setItem("currentWeather", JSON.stringify(currentWeather))
     }
 });
 
