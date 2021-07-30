@@ -72,12 +72,22 @@ $(".searchBtn").on("click", function getWeather () {
                         $("#icon5").attr("src", "https://openweathermap.org/img/w/" + day5.weather[0].icon + ".png");
                         $(".temp5").text("Temp: " + Math.round(((day5.main.temp_max-273.15)*(9/5)+32)) + "\xB0 F");
                         $(".humid5").text(`Humidity: ${day5.main.humidity}%`);
-                        });
+                    });
                 }
             });
         };
 
         forecast();
+
+        const cityHistory = () =>{
+            let previousCity = document.createElement("button");
+            previousCity.textContent = cityName;
+
+            let sidebar = document.getElementById("city-history");
+            sidebar.appendChild(previousCity);
+        }
+
+        cityHistory();
     }
 });
 
