@@ -1,7 +1,7 @@
 $(".searchBtn").on("click", function getWeather () {
     const cityName = $("#cityInput").val().toUpperCase();
-    const  query= "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=475f5f6bb734d8c713688458591cd41b";
-
+    const query= "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=475f5f6bb734d8c713688458591cd41b";
+    const forecastQuery = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=475f5f6bb734d8c713688458591cd41b`
 
     $.getJSON(query, weatherCallback);
     function weatherCallback(data) {
@@ -37,6 +37,23 @@ $(".searchBtn").on("click", function getWeather () {
         let currentWeather = JSON.parse(localStorage.getItem("currentWeather")) || {};
         currentWeather = [city, condition, humidity, speed, temp]
         localStorage.setItem("currentWeather", JSON.stringify(currentWeather))
+
+        const forecast = (forecastData) => {
+            fetch(forecastQuery).then(function(data) {
+                if(data.ok) {
+                    data.json().then(function(data) {
+                        const day1 = data.list[0];
+
+                        $("#day1").text(moment(day1.dt_txt).format('MM.DD.YY'));
+                        $("#icon1").attr("src", "https://openweathermap.org/img/w/" + day1.weather[0].icon + ".png");
+                        $(".temp1").text("Temp: " + Math.round(((day1.main.temp_max-273.15)*(9/5)+32)) + "\xB0 F");
+                        $(".humid1").text(`Humidity: ${day1.main.humidity}%`);
+                    });
+                }
+            });
+        };
+
+        forecast();
     }
 });
 
